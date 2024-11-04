@@ -1,0 +1,36 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 20px;
+    color: #333;
+    background-color: #e0e0e0; /* Calmer, less bright color */
+}
+
+.review-container {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #ffdede; /* Different color than the background */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #2c3e50;
+}
+
+h3 {
+    color: #34495e;
+}
+
+a {
+    color: #1abc9c;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+p {
+    margin: 10px 0;
+    line-height: 1.6;
+}
