@@ -19,10 +19,48 @@
             <a href="https://www.github.com" target="_blank" class="social-button">GitHub</a>
             <a href="https://twitter.com" target="_blank" class="social-button">Twitter</a>
             <a href="https://www.instagram.com" target="_blank" class="social-button">Instagram</a>
+            <button id="theme-toggle" class="social-button">Toggle Dark/Light Mode</button>
         </div>
     </nav>
     <h1>Welcome to My Portfolio</h1>
     <p>This website showcases my web development skills.</p>
     <img src="images/portfolio.jpg" alt="Portfolio Image" />
+    <script>
+        const toggleButton = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        // Check localStorage for the saved theme
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme) {
+            body.classList.add(currentTheme);
+            toggleButton.textContent = currentTheme === 'dark-mode' ? 'Toggle Light Mode' : 'Toggle Dark Mode';
+        }
+
+        toggleButton.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            
+            // Save the current theme to localStorage
+            const theme = body.classList.contains('dark-mode') ? 'dark-mode' : '';
+            localStorage.setItem('theme', theme);
+            
+            // Update button text based on mode
+            toggleButton.textContent = body.classList.contains('dark-mode') ? 'Toggle Light Mode' : 'Toggle Dark Mode';
+        });
+    </script>
+
+    <script>
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                // Check if the link is an anchor link (starts with #)
+                if (this.getAttribute('href').startsWith('#')) {
+                    e.preventDefault(); // Prevent default behavior for anchor links
+                    const targetId = this.getAttribute('href');
+                    document.querySelector(targetId).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>

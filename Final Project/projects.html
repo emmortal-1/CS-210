@@ -19,6 +19,7 @@
             <a href="https://www.github.com" target="_blank" class="social-button">GitHub</a>
             <a href="https://twitter.com" target="_blank" class="social-button">Twitter</a>
             <a href="https://www.instagram.com" target="_blank" class="social-button">Instagram</a>
+            <button id="theme-toggle" class="social-button">Toggle Dark/Light Mode</button>
         </div>
     </nav>
     <h1>My Projects</h1>
@@ -36,5 +37,55 @@
             <p>Description of project 3.</p>
         </div>
     </div>
+    <div class="carousel">
+        <img id="carousel-image" src="images/project1.jpg" alt="Project 1">
+        <button id="prev">Previous</button>
+        <button id="next">Next</button>
+    </div>
+
+    <script>
+        const images = ['images/project1.jpg', 'images/project2.jpg', 'images/project3.jpg'];
+        let currentIndex = 0;
+
+        const carouselImage = document.getElementById('carousel-image');
+        const prevButton = document.getElementById('prev');
+        const nextButton = document.getElementById('next');
+
+        function updateImage() {
+            carouselImage.src = images[currentIndex];
+        }
+
+        prevButton.addEventListener('click', () => {
+            currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
+            updateImage();
+        });
+
+        nextButton.addEventListener('click', () => {
+            currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
+            updateImage();
+        });
+    </script>
+    <script>
+        const toggleButton = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        // Check localStorage for the saved theme
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme) {
+            body.classList.add(currentTheme);
+            toggleButton.textContent = currentTheme === 'dark-mode' ? 'Toggle Light Mode' : 'Toggle Dark Mode';
+        }
+
+        toggleButton.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            
+            // Save the current theme to localStorage
+            const theme = body.classList.contains('dark-mode') ? 'dark-mode' : '';
+            localStorage.setItem('theme', theme);
+            
+            // Update button text based on mode
+            toggleButton.textContent = body.classList.contains('dark-mode') ? 'Toggle Light Mode' : 'Toggle Dark Mode';
+        });
+    </script>
 </body>
 </html>
