@@ -123,3 +123,42 @@ button.dark-mode, .social-button.dark-mode {
     background-color: #555; /* Dark grey background for buttons in dark mode */
     color: white; /* White text color */
 }
+
+.projects-box {
+    background-color: #f9f9f9; /* Light background for the box */
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 20px; /* Padding inside the box */
+    margin: 20px auto; /* Center the box */
+    max-width: 600px; /* Maximum width */
+    text-align: left; /* Align text to the left */
+}
+
+.projects-box h2 {
+    text-align: center; /* Center the heading */
+}
+
+.projects-box ul {
+    list-style-type: none; /* Remove bullet points */
+    padding: 0; /* Remove padding */
+}
+
+.projects-box ul li {
+    margin: 10px 0; /* Space between list items */
+}
+
+.projects-box ul li a {
+    text-decoration: none; /* Remove underline from links */
+    color: #007bff; /* Link color */
+}
+
+.projects-box ul li a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+/* Dark mode styles for the projects box */
+body.dark-mode .projects-box {
+    background-color: #333; /* Dark background for dark mode */
+    color: #ffffff; /* Light text color for dark mode */
+    border: 1px solid #555; /* Darker border for dark mode */
+}
