@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Contact</title>
+    <title>Contact Me</title>
 </head>
 <body>
     <nav>
@@ -15,44 +15,38 @@
             <li><a href="contact.html">Contact</a></li>
         </ul>
         <div class="social-media-buttons nav-right">
-            <a href="https://github.com/emmortal-1" target="_blank" class="social-button">GitHub</a> <!-- Updated GitHub link -->
+            <a href="https://github.com/emmortal-1" target="_blank" class="social-button">GitHub</a>
             <button id="theme-toggle" class="social-button">Toggle Dark/Light Mode</button>
         </div>
     </nav>
-    <h1>Contact Me</h1>
-    <form name="contact" method="POST" data-netlify="true">
-        <input type="hidden" name="form-name" value="contact" />
+    
+    <div class="contact-container">
+        <h1>Contact Me</h1>
+        <p>If you have any questions or feedback, please fill out the form below:</p>
         
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
-        
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-        
-        <label for="message">Message:</label>
-        <textarea id="message" name="message" required></textarea>
-        
-        <button type="submit">Send</button>
-    </form>
+        <form name="contact" method="POST" netlify>
+            <input type="hidden" name="form-name" value="contact" />
+            
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required placeholder="Your Name">
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required placeholder="Your Email">
+            
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required placeholder="Your Message"></textarea>
+            
+            <button type="submit">Send Message</button>
+        </form>
+        <p id="success-message" style="display:none;">Thank you for your message! We will get back to you soon.</p>
+    </div>
+
     <script>
         const form = document.querySelector('form');
-        const successMessage = document.createElement('p');
-        successMessage.style.display = 'none';
-        successMessage.textContent = 'Thank you for your message! We will get back to you soon.';
-        document.body.appendChild(successMessage);
+        const successMessage = document.getElementById('success-message');
 
         form.addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent the default form submission
-
-            // Custom validation
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
-
-            if (!name || !email || !message) {
-                alert('Please fill in all fields.');
-                return;
-            }
 
             const formData = new FormData(form);
 
@@ -63,18 +57,27 @@
                     'Accept': 'application/json'
                 }
             }).then(response => {
+                console.log('Response:', response); // Log the response object
+                
                 if (response.ok) {
-                    form.reset(); // Reset the form
-                    successMessage.style.display = 'block'; // Show success message
+                    return response.json(); // Parse JSON only if response is OK
                 } else {
-                    alert('There was a problem with your submission. Please try again.');
+                    return response.text().then(text => {
+                        console.error('Submission error:', text); // Log the error response as text
+                        throw new Error('There was a problem with your submission: ' + text);
+                    });
                 }
+            }).then(data => {
+                console.log('Success:', data); // Log the success data
+                form.reset(); // Reset the form
+                successMessage.style.display = 'block'; // Show success message
             }).catch(error => {
-                alert('There was a problem with your submission. Please try again.');
+                console.error('Fetch error:', error); // Log the error for debugging
+                alert('There was a problem with your submission. Please try again.'); // Show a generic error message
             });
         });
-    </script>
-    <script>
+
+        // Dark mode toggle functionality
         const toggleButton = document.getElementById('theme-toggle');
         const body = document.body;
 

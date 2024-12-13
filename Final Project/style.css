@@ -3,6 +3,8 @@ body {
     margin: 0;
     padding: 0;
     text-align: center;
+    background-color: #ffffff;
+    color: #000000;
 }
 
 nav {
@@ -110,7 +112,7 @@ nav a {
 }
 
 body.dark-mode {
-    background-color: #121212; /* Dark background */
+    background-color: #333; /* Dark background */
     color: #ffffff; /* Light text color */
 }
 
@@ -161,4 +163,73 @@ body.dark-mode .projects-box {
     background-color: #333; /* Dark background for dark mode */
     color: #ffffff; /* Light text color for dark mode */
     border: 1px solid #555; /* Darker border for dark mode */
+}
+
+.contact-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    color: #000;
+}
+
+.contact-container h1 {
+    margin-bottom: 10px;
+}
+
+.contact-container p {
+    margin-bottom: 20px;
+}
+
+.contact-container label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+.contact-container input, 
+.contact-container textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #ffffff;
+    color: #000;
+}
+
+.contact-container button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.contact-container button:hover {
+    background-color: #0056b3;
+}
+
+.contact-container.dark-mode {
+    background-color: #444; /* Darker background for the contact container */
+    border: 1px solid #555; /* Darker border for the contact container */
+    color: #ffffff;
+}
+
+.contact-container.dark-mode input,
+.contact-container.dark-mode textarea {
+    background-color: #555; /* Darker input fields */
+    color: #ffffff; /* Light text color for input fields */
+    border: 1px solid #666; /* Darker border for input fields */
+}
+
+.contact-container.dark-mode button {
+    background-color: #007bff; /* Button color */
+}
+
+.contact-container.dark-mode button:hover {
+    background-color: #0056b3; /* Darker button color on hover */
 }
